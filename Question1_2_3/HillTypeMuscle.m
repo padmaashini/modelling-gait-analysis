@@ -41,6 +41,7 @@ classdef HillTypeMuscle
             
             normalized_tendon_length = ...
                 (muscle_tendon_length - obj.resting_length_muscle * normalized_muscle_length) / obj.resting_length_tendon;
+            normalized_tendon_length
         end
         
         function muscle_tension = get_force(obj, total_length, norm_muscle_length)

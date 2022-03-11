@@ -9,7 +9,7 @@ function simulate(T, f0M, resting_length_muscle, resting_length_tendon, RelTol, 
 %%% TASK 1
 
 %-create instance of HillTypeMuscle model 
-m1 = HillTypeMuscle(100, 0.3, 0.1);
+m1 = HillTypeMuscle(f0M, resting_length_muscle, resting_length_tendon);
 m1
 % velocityOverTime(T, rending)
 
@@ -21,7 +21,7 @@ m1
             a = 1;
         end
         lm = nMuscleLength;
-        lt = m1.norm_tendon_length(0.1 ,lm);
+        lt = m1.norm_tendon_length(resting_length_muscle +  resting_length_tendon,lm);
         velocity = get_velocity(a, lm, lt);
     end 
         
@@ -34,6 +34,7 @@ m1
 % the outputs of ode45 must be named "time" and "norm_lm"
  options = odeset('RelTol',RelTol, 'AbsTol',AbsTol); 
 [time,norm_lm] = ode45(@velocityOverTime, [0 2], [1], options); 
+norm_lm
 
 %%% TASK 4
 % save the estimated forces in a vector called "forces"
