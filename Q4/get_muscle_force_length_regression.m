@@ -178,9 +178,6 @@ end
 length = data(:,1);
 force = data(:,2);
 
-plot(length, force); 
-% plot.show(); 
-
 % Regression with "fit" function with "gauss2" option as model type
 force_length_regression = fit(data(:,1),data(:,2),'gauss2');
 
